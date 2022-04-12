@@ -1,0 +1,27 @@
+doctype html 
+html 
+head 
+title #{title}
+body 
+block content 
+h1 Birthday Details
+  if(message) 
+        p Status: #{message}
+form(action="/profile", method="post")
+        div.input
+            span.label First Name:
+            input(type="text", name="first_name" required)
+        div.input
+            span.label Last Name:
+            input(type="text", name="last_name" required)
+        div.input
+            span.label Address:
+            input(type="text", name="address" required)
+        div.input
+            span.label Date of Birth:
+            input(type="date", name="date_of_birth" required)
+        div.input
+            span.label Phone:
+            input(type="number", name="phone" required)                
+        div.actions
+            input(type="submit", value="add" required)

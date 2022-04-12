@@ -1,0 +1,18 @@
+doctype html 
+html 
+head 
+title #{title}
+body 
+block content 
+h1 Check your birthday
+  if(message) 
+        p Status: #{message}
+form(action="/profile/birthday", method="post")
+        div.input
+            span.label First Name:
+            input(type="text", name="first_name" required)
+        div.input
+            span.label Last Name:
+            input(type="text", name="last_name" required)                
+        div.actions
+            input(type="submit", value="Check" required)
