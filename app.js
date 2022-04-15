@@ -5,9 +5,9 @@
  var path = require('path');
  var createError = require('http-errors');
  const profileRouter = require('./controllers/profile.controller');
- 
+ const { register, login } = require("./controllers/auth.controller");
  const app = express();
- 
+ const passport = require("./passport/passport");
  /**
   * Initializing the mongoose connection.
   */
@@ -17,8 +17,11 @@
  app.set('view engine', 'jade');
  app.use(express.json());
  app.use(express.urlencoded({ extended: false }));
- app.use('/profile',profileRouter)
- 
+ app.use(passport.initialize());
+
+ app.post('/register', register)
+ app.post('/login', login)
+ app.use('/profile',passport.authenticate("jwt", { session: false }), profileRouter)
  // catch 404 and forward to error handler
  app.use(function(req, res, next) {
      next(createError(404));
